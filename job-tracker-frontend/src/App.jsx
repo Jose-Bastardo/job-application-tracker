@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { fetchJobs, createJob, deleteJob } from './api';
 import './App.css'
 
 import JobForm from './components/JobForm';
@@ -7,11 +8,38 @@ import FilterBar from './components/FilterBar';
 
 function App() {
   const [jobs, setJobs] = useState([]);
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState("All");
 
-   function addJob(newJob){
-    setJobs([...jobs, newJob]);
+  useEffect(() => {
+    async function loadJobs() {
+      try {
+        const data = await fetchJobs();
+        setJobs(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    loadJobs();
+  }, []);
+
+   async function addJob(newJob){
+    await createJob(newJob)
+    
+    const updatedJobs = await fetchJobs();
+
+    setJobs(updatedJobs);
   }
+
+  async function deleteJobById(idToDelete){
+     
+    await deleteJob(idToDelete)
+    
+    const updatedJobs = await fetchJobs();
+
+    setJobs(updatedJobs);
+  }
+
 
   return (
    <div>
@@ -19,7 +47,7 @@ function App() {
       <h1>Job Tracker</h1>
       <JobForm onAddJob={addJob} />
       <FilterBar onFilterChange={setFilter} filter={filter}/>
-      <JobList jobs={jobs} filter={filter}/>
+      <JobList jobs={jobs} filter={filter} onDelete={deleteJobById}/>
     </div>
   );
 }

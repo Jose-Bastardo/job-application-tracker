@@ -10,8 +10,15 @@ function JobForm( {onAddJob} ) {
   const [notes, setNotes] = useState('');
 
   function handleSubmit() {
+    setCompany('');
+  setRole('');
+  setStatus('Applied');
+  setNotes('');
+
     const job = {company: company, role: role, status: status, notes: notes}
     onAddJob(job);
+
+    
   }
 
 
@@ -20,9 +27,11 @@ function JobForm( {onAddJob} ) {
       <h2>Add Job Application</h2>
       <input 
         placeholder="Company" 
+        value={company}
         onChange={(e) => setCompany(e.target.value)}/>
       <input 
         placeholder="Role" 
+        value={role}
         onChange={(e) => setRole(e.target.value)}/>
       <select 
         name="status" 
@@ -38,6 +47,7 @@ function JobForm( {onAddJob} ) {
         </select>
         <input 
             placeholder="Notes" 
+            value={notes}
             onChange={(e) => setNotes(e.target.value)}/>
       <button onClick={handleSubmit}>Add</button>
     </div>

@@ -1,18 +1,20 @@
-function JobList({ jobs, filter }) {
+function JobList({ jobs, filter, onDelete }) {
  
     const filteredJobs =
     filter === "All"
       ? jobs
-      : jobs.filter(job => job.status === filter);
+      : jobs.filter(job => job.Status === filter);
 
     return(
   <div>
     <h2>Jobs List</h2>
-    {console.log(filter)}
-
-      {filteredJobs.map((job, index, ) => 
+    {console.log(jobs)}
+    {console.log(filteredJobs)}
+      {filteredJobs.map((job, index ) => 
                 <div key={index}>
-                <p>{job.company} {job.role} {job.status} {job.notes}</p>
+                <p>{job.Company} {job.Role} {job.Status} {job.Notes}
+                <button name="Delete" onClick={() => onDelete(job.Id)}>Delete</button>
+                </p>
                 </div>
             )
         }

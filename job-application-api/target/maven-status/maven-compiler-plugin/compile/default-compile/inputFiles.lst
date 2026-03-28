@@ -1,0 +1,8 @@
+/Users/jose/Desktop/job-application-tracker/job-application-api/src/main/java/com/josebastardo/job_application_api/Config/SecurityConfig.java
+/Users/jose/Desktop/job-application-tracker/job-application-api/src/main/java/com/josebastardo/job_application_api/Controller/ApplicationController.java
+/Users/jose/Desktop/job-application-tracker/job-application-api/src/main/java/com/josebastardo/job_application_api/JobApplicationApiApplication.java
+/Users/jose/Desktop/job-application-tracker/job-application-api/src/main/java/com/josebastardo/job_application_api/Repository/ApplicationRepository.java
+/Users/jose/Desktop/job-application-tracker/job-application-api/src/main/java/com/josebastardo/job_application_api/Service/ApplicationService.java
+/Users/jose/Desktop/job-application-tracker/job-application-api/src/main/java/com/josebastardo/job_application_api/dto/ApplicationRequest.java
+/Users/jose/Desktop/job-application-tracker/job-application-api/src/main/java/com/josebastardo/job_application_api/dto/ApplicationResponse.java
+/Users/jose/Desktop/job-application-tracker/job-application-api/src/main/java/com/josebastardo/job_application_api/model/Application.java
