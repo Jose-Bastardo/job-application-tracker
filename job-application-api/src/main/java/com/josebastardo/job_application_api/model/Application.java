@@ -42,7 +42,9 @@ public class Application {
     private String notes;
 
     @Getter
+    @Setter
     private LocalDate dateApplied;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 

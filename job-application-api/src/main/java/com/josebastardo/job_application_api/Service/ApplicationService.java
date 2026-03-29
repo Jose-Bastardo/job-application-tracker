@@ -27,6 +27,7 @@ public class ApplicationService {
         application.setRole(request.getRole());
         application.setStatus(request.getStatus());
         application.setNotes(request.getNotes());
+        application.setDateApplied(request.getDateApplied());
         applicationRepository.save(application);
         return convertToAppResponse(application);
     }
@@ -51,6 +52,7 @@ public class ApplicationService {
         application.setRole(request.getRole());
         application.setStatus(request.getStatus());
         application.setNotes(request.getNotes());
+        application.setDateApplied(request.getDateApplied());
         applicationRepository.save(application);
         return convertToAppResponse(application);
     }

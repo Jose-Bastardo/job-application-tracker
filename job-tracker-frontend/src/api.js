@@ -5,7 +5,7 @@ export async function fetchJobs() {
   if (!response.ok) {
     throw new Error('Failed to fetch jobs');
   }
-  return response.json();
+  return await response.json();
 }
 
 export async function createJob(job) {
@@ -21,7 +21,23 @@ export async function createJob(job) {
     throw new Error('Failed to create job');
   }
 
-  return response.json();
+  return await response.json();
+}
+
+export async function updateJob(job) {
+  const response = await fetch(`${BASE_URL}/${job.Id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(job),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to update job');
+  }
+
+  return await response.json();
 }
 
 export async function deleteJob(id) {

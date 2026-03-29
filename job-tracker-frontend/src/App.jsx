@@ -1,53 +1,81 @@
 import { useEffect, useState } from 'react'
-import { fetchJobs, createJob, deleteJob } from './api';
+import { fetchJobs, createJob, updateJob, deleteJob } from './api';
 import './App.css'
 
 import JobForm from './components/JobForm';
 import JobList from './components/JobList';
 import FilterBar from './components/FilterBar';
+import SortBar from './components/SortBar';
 
 function App() {
   const [jobs, setJobs] = useState([]);
   const [filter, setFilter] = useState("All");
+  const [sort, setSort] = useState("date-desc");
+  const [editableJob, setEditableJob] = useState({Id: '', Company: '', Role: '', Status: 'Default', Notes: '', dateApplied: ''} );
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function loadJobs() {
+    
+    
+ 
+
+    loadJobs();
+      
+  }, []);
+
+  async function loadJobs() {
+      setLoading(true)
+         await timeout(1000); 
       try {
         const data = await fetchJobs();
         setJobs(data);
       } catch (error) {
         console.error(error);
       }
-    }
+      setLoading(false)    
+  }
 
-    loadJobs();
-  }, []);
+  function timeout(delay) {
+    return new Promise( res => setTimeout(res, delay) );
+}
 
    async function addJob(newJob){
     await createJob(newJob)
     
-    const updatedJobs = await fetchJobs();
+    await loadJobs();
 
-    setJobs(updatedJobs);
+  }
+
+  async function updateJobById(updatedJob){
+    await updateJob(updatedJob)
+    
+   await loadJobs();
   }
 
   async function deleteJobById(idToDelete){
      
     await deleteJob(idToDelete)
     
-    const updatedJobs = await fetchJobs();
+    await loadJobs();
+  }
 
-    setJobs(updatedJobs);
+  function List(isLoading){
+    if(isLoading.isLoading){
+      return(<h2>Loading...</h2>)
+    }
+    else{
+      return(<JobList jobs={jobs} filter={filter} sort={sort} onDelete={deleteJobById} editJob={setEditableJob}/>)
+    }
   }
 
 
   return (
    <div>
-    {console.log(jobs)}
       <h1>Job Tracker</h1>
-      <JobForm onAddJob={addJob} />
+      <JobForm onAddJob={addJob} onJobUpdate={updateJobById} editableJob={editableJob} onFormClear={setEditableJob} />
       <FilterBar onFilterChange={setFilter} filter={filter}/>
-      <JobList jobs={jobs} filter={filter} onDelete={deleteJobById}/>
+      <SortBar onSortChange={setSort} sort={sort} />
+      <List isLoading={loading} />
     </div>
   );
 }
