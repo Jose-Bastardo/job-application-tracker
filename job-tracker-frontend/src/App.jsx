@@ -6,6 +6,7 @@ import JobForm from './components/JobForm';
 import JobList from './components/JobList';
 import FilterBar from './components/FilterBar';
 import SortBar from './components/SortBar';
+import SearchBar from './components/SearchBar';
 
 function App() {
   const [jobs, setJobs] = useState([]);
@@ -13,14 +14,10 @@ function App() {
   const [sort, setSort] = useState("date-desc");
   const [editableJob, setEditableJob] = useState({Id: '', Company: '', Role: '', Status: 'Default', Notes: '', dateApplied: ''} );
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    
-    
- 
-
-    loadJobs();
-      
+    loadJobs();    
   }, []);
 
   async function loadJobs() {
@@ -41,21 +38,16 @@ function App() {
 
    async function addJob(newJob){
     await createJob(newJob)
-    
     await loadJobs();
-
   }
 
   async function updateJobById(updatedJob){
     await updateJob(updatedJob)
-    
    await loadJobs();
   }
 
   async function deleteJobById(idToDelete){
-     
     await deleteJob(idToDelete)
-    
     await loadJobs();
   }
 
@@ -64,18 +56,27 @@ function App() {
       return(<h2>Loading...</h2>)
     }
     else{
-      return(<JobList jobs={jobs} filter={filter} sort={sort} onDelete={deleteJobById} editJob={setEditableJob}/>)
+      return(<JobList jobs={jobs} filter={filter} sort={sort} search={search} onDelete={deleteJobById} editJob={setEditableJob}/>)
     }
   }
 
 
   return (
    <div>
-      <h1>Job Tracker</h1>
-      <JobForm onAddJob={addJob} onJobUpdate={updateJobById} editableJob={editableJob} onFormClear={setEditableJob} />
-      <FilterBar onFilterChange={setFilter} filter={filter}/>
-      <SortBar onSortChange={setSort} sort={sort} />
-      <List isLoading={loading} />
+      <div className="main-container">
+        <div className="add-edit-column">
+          <JobForm onAddJob={addJob} onJobUpdate={updateJobById} editableJob={editableJob} onFormClear={setEditableJob} />
+        </div>
+        <div className="list-column">
+          <h1>Job Application Tracker</h1>
+          <div class="list-options">
+          <FilterBar onFilterChange={setFilter} filter={filter}/>
+          <SortBar onSortChange={setSort} sort={sort} />
+          <SearchBar onSearchChange={setSearch} search={search} />
+          </div>
+          <List isLoading={loading} />
+        </div>
+      </div>
     </div>
   );
 }

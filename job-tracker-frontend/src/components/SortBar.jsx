@@ -1,7 +1,9 @@
 function SortBar( {onSortChange, sort}) {
 
   return (
-    <select
+    <span>
+    <label htmlFor="sort">Sort By:</label>
+    <select className="input bar"
     value={sort}
     name="sort"
     id="sort" 
@@ -12,6 +14,7 @@ function SortBar( {onSortChange, sort}) {
       <option value="company Z-A">Company Z-A</option>
       <option value="status">Status</option>
     </select>
+    </span>
   );
 }
 

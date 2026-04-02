@@ -1,7 +1,9 @@
 function FilterBar( {onFilterChange, filter}) {
 
   return (
-    <select
+    <span>
+    <label htmlFor="filter">Filter By Status:</label>
+    <select className="input bar"
     value={filter}
     name="filter"
     id="filter" 
@@ -12,6 +14,7 @@ function FilterBar( {onFilterChange, filter}) {
       <option value="Rejected">Rejected</option>
       <option value="Offer">Offer</option>
     </select>
+    </span>
   );
 }
 
