@@ -1,50 +1,57 @@
 body {
   background-color: #e6ecf5;
   font-size: 16px;
-  font-family:'Franklin Gothic Medium', Arial, sans-serif
+  font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+  height: 100%;
 }
 
 .main-container {
-    display: grid;
-    /* Creates two columns of equal width */
-    grid-template-columns: 3fr 1fr;
-    /* Adds a gap between columns */
-    gap: 20px; 
-    max-width: 1400px;
-    margin: 0 auto;
-    align-items: start;
-    justify-items: center;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: start;
+  justify-items: center;
+  height: 800px;
 
-    padding: 30px 4em;
+  padding: 30px 4em;
 
-    .add-edit-column { order: 2; }
-    .list-column { order: 1; }
-    
+  .add-edit-column {
+    order: 2;
+  }
+
+  .list-column {
+    order: 1;
+  }
+
 }
+
 .add-edit-column {
-  box-sizing: border-box; /* This is key: includes padding/border in the width calculation */
-    border: 1px solid #ccc;
-    padding: 25px;
-    background-color: white;
-    margin: 0 auto;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 25px;
+  background-color: white;
+  margin: 0 auto;
 }
 
-.add-edit-column div div{
-    padding: 10px 0;
+.add-edit-column div div {
+  padding: 10px 0;
 }
+
 .full-width-input {
   width: 100%;
-    box-sizing: border-box; /* This is key: includes padding/border in the width calculation */
-    padding: 10px;
-    margin: 0;
-    border: 1px solid #ccc;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 0;
+  border: 1px solid #ccc;
 }
 
-.input{
-  box-sizing: border-box; /* This is key: includes padding/border in the width calculation */
-    padding: 10px;
-    margin: 0;
-    border: 1px solid #ccc;
+.input {
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 0;
+  border: 1px solid #ccc;
 }
 
 .bar {
@@ -52,26 +59,33 @@ body {
 }
 
 .search {
-  box-sizing: border-box; /* This is key: includes padding/border in the width calculation */
-    padding: 10px;
-    margin-left: 30px;
-    border: 1px solid #ccc;
-    width: 40%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-left: 30px;
+  border: 1px solid #ccc;
+  width: 40%;
 }
 
 .list-column {
-  box-sizing: border-box; /* This is key: includes padding/border in the width calculation */
-    border: 1px solid #ccc;
-    text-indent: 30px;
-    padding: 15px 0;
-    background-color: white;
-    margin: 0 auto;
-    width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  height: 100%;
+  padding: 15px 0;
+  background-color: white;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+
+h1 {
+  text-indent: 30px;
+  ;
 }
 
 .list-options {
   display: flex;
   padding: 10px 0;
+  text-indent: 30px;
 }
 
 .job-list-table {
@@ -79,17 +93,17 @@ body {
   padding: 10px 0;
   border-collapse: collapse;
   background-attachment: fixed;
-  
+
 }
 
-thead{
+thead {
   background-color: #f8f9fb;
-  box-sizing: border-box; /* This is key: includes padding/border in the width calculation */
-    padding: 0;
-    margin: 0;
-    border-bottom: 1px solid #ccc;
-    border-top: 1px solid #ccc;
-    height: 60px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  height: 60px;
 
 }
 
@@ -102,7 +116,7 @@ td {
   padding-left: 30px;
 }
 
-.edit-button{
+.edit-button {
   background-color: #0d5bb8;
   color: white;
   height: 35px;
@@ -110,7 +124,7 @@ td {
   border-radius: 5px;
 }
 
-.delete-button{
+.delete-button {
   background-color: #d7352a;
   color: white;
   height: 35px;
@@ -119,7 +133,7 @@ td {
   margin-left: 3px;
 }
 
-.add-button{
+.add-button {
   background-color: #0d5bb8;
   color: white;
   height: 35px;
@@ -127,7 +141,7 @@ td {
   border-radius: 5px;
 }
 
-.update-button{
+.update-button {
   background-color: #0d5bb8;
   color: white;
   height: 35px;
@@ -135,7 +149,7 @@ td {
   border-radius: 5px;
 }
 
-.cancel-button{
+.cancel-button {
   background-color: #d7352a;
   margin-left: 3px;
   color: white;
@@ -144,13 +158,13 @@ td {
   border-radius: 5px;
 }
 
-.job-list-row{
+.job-list-row {
   padding: 150px;
   height: 70px;
   border-bottom: 3px solid #f6f8f9;
 }
 
-.status{
+.status {
   padding: 10px 0;
   width: 120px;
   text-align: center;
@@ -179,33 +193,50 @@ td {
 }
 
 @media (max-width: 900px) {
-    .main-container {
-        /* Stacks columns vertically on screens less than 768px wide */
-        grid-template-columns: 1fr; 
-        font-size: 12px;
-        padding: 15px 2px;
-      
-        .add-edit-column { order: 1; width: 500px;}
-        .list-column { order: 2; }
+  .main-container {
+    grid-template-columns: 1fr;
+    font-size: 12px;
+    padding: 15px 2px;
+
+    .add-edit-column {
+      order: 1;
+      width: 500px;
     }
 
-    .status{
-      width: 90px;
+    .list-column {
+      order: 2;
     }
+  }
 
-    th {
+  .status {
+    width: 90px;
+  }
+
+  th {
     padding-left: 15px;
-    }
+  }
 
-    td {
-      padding-left: 15px;
-    }
+  td {
+    padding-left: 15px;
+  }
 
-    .list-column{
-      text-indent: 15px;
-}
+  .list-column {
+    text-indent: 15px;
+  }
 }
 
 .block-label {
   display: block;
+}
+
+.Pagination {
+  margin: auto auto 10px auto;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
 }
