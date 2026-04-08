@@ -3,40 +3,40 @@
 A full-stack web application for tracking job applications, interview progress, and outcomes. This project allows users to create, update, delete, filter, search, sort, and paginate job applications while integrating a React frontend with a Spring Boot backend and PostgreSQL database.
 
 ## Features
-Create job applications
-Edit existing applications
-Delete applications
-Search by company or role
-Filter by application status
-Sort by company, status, or date
-Pagination for job listings
-Date applied tracking
-Form validation
-REST API integration
-Responsive UI components
+* Create job applications
+* Edit existing applications
+* Delete applications
+* Search by company or role
+* Filter by application status
+* Sort by company, status, or date
+* Pagination for job listings
+* Date applied tracking
+* Form validation
+* REST API integration
+* Responsive UI components
 
 ## Tech Stack
 
 ### Frontend
-React
-JavaScript
-HTML
-CSS
-Fetch API
+* React
+* JavaScript
+* HTML
+* CSS
+* Fetch API
 
 ### Backend
-Java
-Spring Boot
-Spring Data JPA
-REST API
+* Java
+* Spring Boot
+* Spring Data JPA
+* REST API
 
 ### Database
-PostgreSQL
+* PostgreSQL
 
 ### Tools
-Git
-Maven
-Postman
+* Git
+* Maven
+* Postman
 
 ## Application Architecture
 ```
@@ -50,7 +50,7 @@ PostgreSQL Database
 ```
 ## API Endpoints
 
-Base URL:
+Base URL:  
 `/api/applications`
 
 | Method	| Endpoint | Description |
@@ -95,13 +95,13 @@ Users can filter job applications by:
 ## Getting Started
 
 ### Backend Setup
-Clone the repository:
+Clone the repository:  
 `git clone https://github.com/Jose-bastardo/job-application-tracker`
 
-Navigate to backend:
+Navigate to backend:  
 `cd backend`
 
-Configure application.properties:
+Configure application.properties:  
 ```
 spring.datasource.url=jdbc:postgresql://localhost:5432/jobtracker
 spring.datasource.username=your_username
@@ -109,24 +109,24 @@ spring.datasource.password=your_password
 spring.jpa.hibernate.ddl-auto=update
 ```
 
-Run Spring Boot:
+Run Spring Boot:  
 `mvn spring-boot:run`
 
-Backend runs on:
+Backend runs on:  
 `http://localhost:8080`
 
 ### Frontend Setup
 
-Navigate to frontend:
+Navigate to frontend:  
 `cd frontend`
 
-Install dependencies:
+Install dependencies:  
 `npm install`
 
-Run dev server:
+Run dev server:  
 `npm run dev`
 
-Frontend runs on:
+Frontend runs on:  
 `http://localhost:5173`
 
 ## Project Structure
@@ -158,6 +158,6 @@ backend/
 
 ## Author
 
-Jose Bastardo
-LinkedIn: https://www.linkedin.com/in/josebastardo
-GitHub: https://github.com/Jose-bastardo
+Jose Bastardo  
+LinkedIn: https://www.linkedin.com/in/josebastardo  
+GitHub: https://github.com/Jose-bastardo  
