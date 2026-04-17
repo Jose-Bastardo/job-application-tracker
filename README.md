@@ -99,7 +99,7 @@ Clone the repository:
 `git clone https://github.com/Jose-bastardo/job-application-tracker`
 
 Navigate to backend:  
-`cd backend`
+`cd job-application-api`
 
 Configure application.properties:  
 ```
@@ -118,7 +118,7 @@ Backend runs on:
 ### Frontend Setup
 
 Navigate to frontend:  
-`cd frontend`
+`cd job-tracker-frontend`
 
 Install dependencies:  
 `npm install`
