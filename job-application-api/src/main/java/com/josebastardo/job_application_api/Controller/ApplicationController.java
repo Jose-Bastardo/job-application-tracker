@@ -10,7 +10,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/application")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "https://job-application-tracker-da1k.vercel.app/"
+})
 public class ApplicationController {
 
     private final ApplicationService applicationService;

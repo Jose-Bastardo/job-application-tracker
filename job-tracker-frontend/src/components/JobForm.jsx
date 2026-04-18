@@ -87,7 +87,6 @@ function JobForm({ onAddJob, onJobUpdate, editableJob, onFormClear }) {
       alert("Company, role, date applied, and status must be filled out")
       return 1
     }
-    setErrorMessage(0)
     return 0
   }
 
