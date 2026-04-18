@@ -8,6 +8,6 @@ RUN mvn clean package -DskipTests
 # Run stage
 FROM eclipse-temurin:17-jre
 WORKDIR /job-application-api
-COPY --from=build /job-application-api/target/*.jar job-application-api-0.0.1-SNAPSHOT.jar
+COPY --from=build /job-application-api/target/*.jar app.jar
 EXPOSE 8080
 CMD ["java", "-jar", "app.jar"]
