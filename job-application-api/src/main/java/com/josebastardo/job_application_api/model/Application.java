@@ -50,7 +50,6 @@ public class Application {
 
     @PrePersist
     public void onCreate() {
-        dateApplied = LocalDate.now();
         createdAt = LocalDateTime.now();
         updatedAt = LocalDateTime.now();
     }

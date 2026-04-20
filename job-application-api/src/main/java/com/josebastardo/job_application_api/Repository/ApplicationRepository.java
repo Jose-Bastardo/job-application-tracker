@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
     List<Application> findByStatusIgnoreCase(String status);
     Optional<Application> findById(Long Id);
+    boolean existsByCompanyAndRole(String company, String role);
 }
