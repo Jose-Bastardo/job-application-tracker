@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/api/application")
 @CrossOrigin(origins = {
         "http://localhost:5173",
-        "https://job-application-tracker-jb.vercel.app/"
+        "https://job-app-tracker-jb.vercel.app/"
 })
 public class ApplicationController {
 
