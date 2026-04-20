@@ -2,6 +2,10 @@
 
 A full-stack web application for tracking job applications, interview progress, and outcomes. This project allows users to create, update, delete, filter, search, sort, and paginate job applications while integrating a React frontend with a Spring Boot backend and PostgreSQL database.
 
+## 🚀 Live Demo
+- Frontend: https://job-app-tracker-jb.vercel.app/
+- Backend API: https://job-tracker-api-jb.up.railway.app/api/application
+  
 ## Features
 * Create job applications
 * Edit existing applications
@@ -37,6 +41,13 @@ A full-stack web application for tracking job applications, interview progress, 
 * Git
 * Maven
 * Postman
+
+## Deployment
+The frontend is deployed on Vercel, while the Spring Boot backend is hosted on Railway.  
+The application uses environment variables to securely connect to a managed PostgreSQL database.
+
+## Screenshots
+![App](./screenshots/app.png)
 
 ## Application Architecture
 ```
