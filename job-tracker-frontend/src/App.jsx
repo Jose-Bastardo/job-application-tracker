@@ -15,6 +15,7 @@ function App() {
   const [editableJob, setEditableJob] = useState({ Id: '', Company: '', Role: '', Status: 'Default', Notes: '', dateApplied: '' });
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     loadJobs();
@@ -22,7 +23,6 @@ function App() {
 
   async function loadJobs() {
     setLoading(true)
-    await timeout(1000);
     try {
       const data = await fetchJobs();
       setJobs(data);
@@ -30,10 +30,6 @@ function App() {
       console.error(error);
     }
     setLoading(false)
-  }
-
-  function timeout(delay) {
-    return new Promise(res => setTimeout(res, delay));
   }
 
   async function addJob(newJob) {
@@ -57,7 +53,7 @@ function App() {
     }
     else {
       return (<div>
-        <JobList jobs={sortedJobs} search={search} onDelete={deleteJobById} editJob={setEditableJob} />
+        <JobList jobs={sortedJobs} search={search} onDelete={deleteJobById} editJob={setEditableJob} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         
       </div>)
     }

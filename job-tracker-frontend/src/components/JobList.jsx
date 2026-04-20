@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react'
 import Pagination from './Pagination';
 
-function JobList({ jobs, onDelete, editJob }) {
-
-  const [currentPage, setCurrentPage] = useState(1);
+function JobList({ jobs, onDelete, editJob, currentPage, setCurrentPage }) {
 
   const pageJobLimit = 7;
   const numberOfPages = Math.ceil(jobs.length / pageJobLimit);
   const startIndex = (currentPage - 1) * pageJobLimit
   const endIndex = startIndex + pageJobLimit
   const currentPageJobs = jobs.slice(startIndex, endIndex)
-
 
   function JobStatus(status) {
     switch (status.status) {
