@@ -1,5 +1,15 @@
+import { useEffect, useState } from 'react'
+import Pagination from './Pagination';
+
 function JobList({ jobs, onDelete, editJob }) {
 
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const pageJobLimit = 7;
+  const numberOfPages = Math.ceil(jobs.length / pageJobLimit);
+  const startIndex = (currentPage - 1) * pageJobLimit
+  const endIndex = startIndex + pageJobLimit
+  const currentPageJobs = jobs.slice(startIndex, endIndex)
 
 
   function JobStatus(status) {
@@ -40,7 +50,7 @@ function JobList({ jobs, onDelete, editJob }) {
               </tr>
             </thead>
             <tbody>
-              {jobs.map((job, index) =>
+              {currentPageJobs.map((job, index) =>
                 <tr className="job-list-row" key={index}>
                   <td>{job.Company}</td>
                   <td>{job.Role}</td>
@@ -56,6 +66,7 @@ function JobList({ jobs, onDelete, editJob }) {
               }
             </tbody>
           </table>
+          <Pagination numberOfPages={numberOfPages} currentPage={currentPage} onCurrentPageChange={setCurrentPage} />
 
         </div>
       )

@@ -7,11 +7,9 @@ import JobList from './components/JobList';
 import FilterBar from './components/FilterBar';
 import SortBar from './components/SortBar';
 import SearchBar from './components/SearchBar';
-import Pagination from './components/Pagination';
 
 function App() {
   const [jobs, setJobs] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState("All");
   const [sort, setSort] = useState("date-desc");
   const [editableJob, setEditableJob] = useState({ Id: '', Company: '', Role: '', Status: 'Default', Notes: '', dateApplied: '' });
@@ -59,8 +57,8 @@ function App() {
     }
     else {
       return (<div>
-        <JobList jobs={currentPageJobs} search={search} onDelete={deleteJobById} editJob={setEditableJob} />
-        <Pagination numberOfPages={numberOfPages} currentPage={currentPage} onCurrentPageChange={setCurrentPage} />
+        <JobList jobs={sortedJobs} search={search} onDelete={deleteJobById} editJob={setEditableJob} />
+        
       </div>)
     }
   }
@@ -110,13 +108,6 @@ function App() {
 
     return 0;
   });
-
-  const pageJobLimit = 7;
-  const numberOfPages = Math.ceil(sortedJobs.length / pageJobLimit);
-  const startIndex = (currentPage - 1) * pageJobLimit
-  const endIndex = startIndex + pageJobLimit
-  const currentPageJobs = sortedJobs.slice(startIndex, endIndex)
-
 
   return (
     <div>
