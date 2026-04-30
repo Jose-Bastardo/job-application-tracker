@@ -1,7 +1,7 @@
 function SearchBar({ onSearchChange, search }) {
 
   return (
-    <input className="search bar"
+    <input className="border border-[#E5E7EB] py-2 px-4 rounded-lg mt-1 shadow-xs"
       value={search}
       placeholder="Search"
       name="search"

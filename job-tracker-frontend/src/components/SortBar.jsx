@@ -1,9 +1,9 @@
 function SortBar({ onSortChange, sort }) {
 
   return (
-    <span>
+    <span className="space-x-2">
       <label htmlFor="sort">Sort By:</label>
-      <select className="input bar"
+      <select className="border border-[#E5E7EB] py-2 px-4 rounded-lg mt-1 shadow-xs"
         value={sort}
         name="sort"
         id="sort"

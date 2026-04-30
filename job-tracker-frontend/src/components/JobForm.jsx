@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-
+import add from '../assets/add.png';
 
 function JobForm({ onAddJob, onJobUpdate, editableJob, onFormClear }) {
 
@@ -56,16 +56,17 @@ function JobForm({ onAddJob, onJobUpdate, editableJob, onFormClear }) {
 
   function Buttons() {
     if (editableJob.Id == '') {
-      return (<span>
-        <button class="add-button" onClick={handleSubmit}>Add</button>
-      </span>);
+      return (<div className=" flex flex-row w-full space-x-2 bg-[#2563EB] text-white rounded-lg justify-center place-items-center text-center py-3 shadow-sm">
+        <img alt="Add Job" src={add} className="h-10"/>
+        <button onClick={handleSubmit}>Add Job</button>
+      </div>);
     }
     if (editableJob.Id != '') {
       return (
-        <span>
-          <button class="update-button" onClick={handleUpdate}>Update</button>
-          <button class="cancel-button" onClick={handleCancel}>Cancel</button>
-        </span>
+        <div className=" flex flex-row w-full space-x-2 text-white rounded-lg justify-center place-items-center text-center">
+          <button className="bg-[#2563EB] p-3 rounded-lg shadow-sm" onClick={handleUpdate}>Update</button>
+          <button className="bg-red-600 p-3 rounded-lg shadow-sm" onClick={handleCancel}>Cancel</button>
+        </div>
       );
     }
   }
@@ -91,32 +92,31 @@ function JobForm({ onAddJob, onJobUpdate, editableJob, onFormClear }) {
   }
 
   return (
-    <div>
-      <h2>Add/Edit Job Application</h2>
-      <div>
-        <label className="block-label" htmlFor="company">Company:</label>
+    <div className="space-y-5 grow">
+      <div className="flex flex-col">
+        <label className="" htmlFor="company">Company Name</label>
         <input
-          className="full-width-input"
-          placeholder="Company"
+          className="border border-[#E5E7EB] py-2 px-4 rounded-lg mt-1 shadow-xs"
+          placeholder="Enter company name"
           value={company}
           id="company"
           required={true}
           onChange={(e) => setCompany(e.target.value)} />
       </div>
-      <div>
-        <label className="block-label" htmlFor="role">Role:</label>
+      <div className="flex flex-col">
+        <label className="" htmlFor="role">Job Title</label>
         <input
-          className="full-width-input"
-          placeholder="Role"
+          className="border border-[#E5E7EB] py-2 px-4 rounded-lg mt-1 shadow-xs"
+          placeholder="Enter job title"
           value={role}
           id="role"
           required={true}
           onChange={(e) => setRole(e.target.value)} />
       </div>
-      <div>
-        <label className="block-label" htmlFor="status">Application Status:</label>
+      <div className="flex flex-col">
+        <label className="" htmlFor="status">Application Status:</label>
         <select
-          className="full-width-input"
+          className="border border-[#E5E7EB] py-2 px-4 rounded-lg mt-1 shadow-xs"
           name="status"
           id="status"
           value={status}
@@ -129,21 +129,21 @@ function JobForm({ onAddJob, onJobUpdate, editableJob, onFormClear }) {
           <option value="Offer" >Offer</option>
         </select>
       </div>
-      <div>
-        <label className="block-label" htmlFor="date">Date Applied:</label>
+      <div className="flex flex-col">
+        <label className="" htmlFor="date">Application Date</label>
         <input
-          className="input"
+          className="border border-[#E5E7EB] py-2 px-4 rounded-lg mt-1 shadow-xs"
           type="date"
           id="date"
           value={date}
           required={true}
           onChange={(e) => setDate(e.target.value)} />
       </div>
-      <div>
-        <label className="block-label" htmlFor="notes">Job Notes:</label>
+      <div className="flex flex-col">
+        <label className="" htmlFor="notes">Notes</label>
         <input
-          className="full-width-input"
-          placeholder="Notes"
+          className="border border-[#E5E7EB] py-2 px-4 rounded-lg mt-1 shadow-xs"
+          placeholder="Add any notes about this application"
           value={notes}
           id="notes"
           onChange={(e) => setNotes(e.target.value)} />
