@@ -113,7 +113,7 @@ function App() {
         </div>
         <div className="list-column">
           <h1>Job Application Tracker</h1>
-          <div class="list-options">
+          <div className="list-options">
             <FilterBar onFilterChange={setFilter} filter={filter} />
             <SortBar onSortChange={setSort} sort={sort} />
             <SearchBar onSearchChange={setSearch} search={search} />
