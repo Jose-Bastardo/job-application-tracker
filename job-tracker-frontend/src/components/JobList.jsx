@@ -1,6 +1,7 @@
 import Pagination from './Pagination';
+import {useRef, useState} from "react";
 
-function JobList({ jobs, onDelete, editJob, currentPage, setCurrentPage, isLoading }) {
+function JobList({ jobs, onDelete, editJob, currentPage, setCurrentPage, clearForm, isLoading, selectedRowId }) {
 
   const pageJobLimit = 7;
   const numberOfPages = Math.ceil(jobs.length / pageJobLimit);
@@ -10,16 +11,15 @@ function JobList({ jobs, onDelete, editJob, currentPage, setCurrentPage, isLoadi
 
   function JobStatus(status) {
     switch (status.status) {
-      case 'Applied': return <td><div className="bg-blue-400/30 text-blue-700 p-2 rounded-3xl text-center">Applied</div></td>
-      case 'Interviewing': return <td><div className="bg-purple-400/30 text-purple-700 p-2 rounded-3xl text-center">Interviewing</div></td>
-      case 'Rejected': return <td><div className="bg-red-400/30 text-red-700 p-2 rounded-3xl text-center">Rejected</div></td>
-      case 'Offer': return <td><div className="bg-green-400/30 text-green-700 p-2 rounded-3xl text-center">Offer</div></td>
-      default: return <td><div className="">status.status</div></td>
+      case 'Applied': return <td className="w-fit"><div className="bg-blue-400/30 text-blue-700 px-2 py-1 rounded-3xl text-center w-24">Applied</div></td>
+      case 'Interviewing': return <td className="w-fit"><div className="bg-purple-400/30 text-purple-700 px-2 py-1 rounded-3xl text-center w-24">Interview</div></td>
+      case 'Rejected': return <td className="w-fit"><div className="bg-red-400/30 text-red-700 px-2 py-1 rounded-3xl text-center w-24">Rejected</div></td>
+      case 'Offer': return <td className="w-fit"><div className="bg-green-400/30 text-green-700 px-2 py-1 rounded-3xl text-center w-24">Offer</div></td>
+      default: return <td className="w-fit"><div className="w-30">status.status</div></td>
     }
   }
 
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-
+  const options = { year: 'numeric', month: 'short', day: 'numeric' };
 
   function formatDate(date) {
     const newDate = new Date(date);
@@ -35,37 +35,40 @@ function JobList({ jobs, onDelete, editJob, currentPage, setCurrentPage, isLoadi
     }
     else {
       return (
-        <div className="flex flex-col h-full w-full">
-          <table className="w-full">
-            <thead className="bg-[#F6F8FB]">
-              <tr className="[&_th]:py-2 [&_th]:px-5 [&_th]:text-left border-t border-b border-[#E5E7EB] h-15">
-                <th>Company</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th>Date Applied</th>
-                <th>Actions</th>
+          <div className="w-full h-full flex flex-col">
+        <div className="w-full h-full flex overflow-x-scroll mb-8">
+          <table className=" w-full h-full border-collapse">
+            <thead className="bg-[#F6F8FB] text-[#6B7280]">
+              <tr className="[&_th]:py-2 xl:[&_th]:px-8 font-thin [&_th]:px-2 [&_th]:font-medium [&_th]:w-fit [&_th]:whitespace-nowrap border-t border-b border-[#E5E7EB] h-15">
+                <th className="text-left">Company</th>
+                <th className="text-left">Role</th>
+                <th className="text-left">Status</th>
+                <th className="text-left">Date Applied</th>
+                <th className="text-center">Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="h-full w-full">
               {currentPageJobs.map((job, index) =>
-                <tr className="[&_td]:py-2 [&_td]:px-5 border-b border-[#E5E7EB] h-20" key={index}>
-                  <td>{job.Company}</td>
-                  <td>{job.Role}</td>
+                <tr className={`${selectedRowId === job.Id ? "bg-blue-100" : "even:bg-white odd:bg-gray-50"} [&_td]:py-2 xl:[&_td]:px-8 [&_td]:px-2 w-full [&_td]:whitespace-nowrap border-b border-[#E5E7EB] h-1/7`}
+                key={index}
+                >
+                  <td className="truncate min-w-30 w-5/12 max-w-0">{job.Company}</td>
+                  <td className="truncate min-w-30 w-7/12 max-w-0">{job.Role}</td>
                   <JobStatus status={job.Status} />
-                  <td>{formatDate(job.dateApplied)}</td>
-                  <td>
-                    <button className="text-[#2563EB] hover:underline" name="Edit" onClick={() => editJob(job)}>Edit</button>
+                  <td className="text-left w-fit" >{formatDate(job.dateApplied)}</td>
+                  <td className="w-fit">
+                    <button className="text-blue-500 hover:underline" name="Edit" onClick={() => editJob(job)}>Edit</button>
                     <p className="inline"> · </p>
                     <button className="text-red-600 hover:underline" name="Delete" onClick={() => onDelete(job.Id)}>Delete</button>
                   </td>
                 </tr>
-              )
-              }
+                  )}
+              <tr><td></td></tr>
             </tbody>
           </table>
-          <Pagination numberOfPages={numberOfPages} currentPage={currentPage} onCurrentPageChange={setCurrentPage} start={startIndex + 1} end={currentPageJobs.length + startIndex} total={jobs.length}/>
-
         </div>
+            <Pagination numberOfPages={numberOfPages} currentPage={currentPage} onCurrentPageChange={setCurrentPage} clearForm={clearForm} start={startIndex + 1} end={currentPageJobs.length + startIndex} total={jobs.length}/>
+          </div>
       )
     }
   }

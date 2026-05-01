@@ -20,6 +20,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedRowId, setSelectedRowId] = useState(null);
 
   useEffect(() => {
     loadJobs();
@@ -51,15 +52,15 @@ function App() {
     await loadJobs();
   }
 
-  function List(isLoading) {
-    if (isLoading.isLoading) {
-      return (<h2>Loading...</h2>)
-    }
-    else {
-      return (<div className="h-full w-full">
-        <JobList jobs={sortedJobs} search={search} onDelete={deleteJobById} editJob={setEditableJob} currentPage={currentPage} setCurrentPage={setCurrentPage} isLoading={isLoading} />
-      </div>)
-    }
+  function clearForm() {
+    const form = { Id: '', Company: '', Role: '', Status: 'Default', Notes: '', dateApplied: '' }
+    setEditableJob(form);
+    setSelectedRowId(null);
+  }
+
+  function onEditJob(job) {
+    setSelectedRowId(job.Id);
+    setEditableJob(job);
   }
 
   const filteredJobs =
@@ -111,42 +112,45 @@ function App() {
   function onFilterChange(filter) {
     setCurrentPage(1);
     setFilter(filter);
+    clearForm();
   }
 
   function onSortChange(sort) {
     setCurrentPage(1);
     setSort(sort);
+    clearForm();
   }
 
   function onSearchChange(search) {
     setCurrentPage(1);
     setSearch(search);
+    clearForm();
   }
 
   return (
     <div className="w-full h-full flex flex-col">
       <Navbar />
-      <div className="h-full w-full flex flex-row grow p-10 space-x-10 justify-content-center place-items-center">
-        <div className="flex-1 h-full w-full p-10 bg-white border rounded-2xl border-[#E5E7EB] shadow-md">
+      <div className="h-full w-full flex flex-col lg:flex-row lg:flex-nowrap grow p-8 lg:space-x-10 space-y-8 lg:space-y-0 justify-content-center place-items-center">
+        <div className="flex-1 lg:h-full w-full p-8 bg-white border rounded-2xl border-[#E5E7EB] shadow-md">
           <div className="flex flex-row space-x-2 w-full mb-6 place-items-center">
             <img alt={"Add Application"} src={addApplication} className="h-12"/>
             <h2 className="text-xl font-semibold">Add/Edit Job Application</h2>
           </div>
-            <JobForm onAddJob={addJob} onJobUpdate={updateJobById} editableJob={editableJob} onFormClear={setEditableJob} />
+            <JobForm onAddJob={addJob} onJobUpdate={updateJobById} editableJob={editableJob} clearForm={clearForm} />
         </div>
-        <div className="flex flex-col flex-3 h-full w-full py-10 bg-white border rounded-2xl border-[#E5E7EB] shadow-md">
-          <div className="flex flex-row px-10 mb-6 place-items-center">
-            <div className="flex-1 flex flex-row place-items-center space-x-2 text-xl font-semibold">
+        <div className="flex flex-col flex-3 lg:h-full w-full py-8 bg-white border rounded-2xl border-[#E5E7EB] shadow-md flex-nowrap">
+          <div className="w-full flex flex-row px-10 mb-6 place-items-center flex-wrap md:whitespace-nowrap">
+            <div className="flex-1 flex flex-row flex-wrap place-items-center justify-center space-x-2 text-xl font-semibold md:whitespace-nowrap">
               <img alt="Applications" src={application} className="h-12"/>
               <h2>Applications</h2>
             </div>
-            <div className="flex-3 space-x-10 place-items-center">
+            <div className="flex-1 lg:flex-3 lg:space-x-10 space-y-4 lg:space-y-0 place-items-center justify-center flex flex-row flex-wrap">
               <FilterBar onFilterChange={onFilterChange} filter={filter} />
               <SortBar onSortChange={onSortChange} sort={sort} />
               <SearchBar onSearchChange={onSearchChange} search={search} />
             </div>
           </div>
-          <JobList jobs={sortedJobs} search={search} onDelete={deleteJobById} editJob={setEditableJob} currentPage={currentPage} setCurrentPage={setCurrentPage} isLoading={loading} />
+          <JobList jobs={sortedJobs} search={search} onDelete={deleteJobById} editJob={onEditJob} currentPage={currentPage} clearForm={clearForm} setCurrentPage={setCurrentPage} isLoading={loading} selectedRowId={selectedRowId} />
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 function SortBar({ onSortChange, sort }) {
 
   return (
-    <span className="space-x-2">
+    <div className="space-x-2 flex flex-row flex-wrap lg:flex-nowrap justify-center w-min place-items-center">
       <label htmlFor="sort">Sort By:</label>
       <select className="border border-[#E5E7EB] py-2 px-4 rounded-lg mt-1 shadow-xs"
         value={sort}
@@ -14,7 +14,7 @@ function SortBar({ onSortChange, sort }) {
         <option value="company Z-A">Company Z-A</option>
         <option value="status">Status</option>
       </select>
-    </span>
+    </div>
   );
 }
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import add from '../assets/add.png';
 
-function JobForm({ onAddJob, onJobUpdate, editableJob, onFormClear }) {
+function JobForm({ onAddJob, onJobUpdate, editableJob, clearForm }) {
 
   const [company, setCompany] = useState('');
   const [role, setRole] = useState('');
@@ -30,8 +30,7 @@ function JobForm({ onAddJob, onJobUpdate, editableJob, onFormClear }) {
 
     onAddJob(job);
 
-    const clearForm = { Id: '', Company: '', Role: '', Status: 'Default', Notes: '', dateApplied: '' }
-    onFormClear(clearForm);
+    clearForm();
 
   }
 
@@ -44,14 +43,12 @@ function JobForm({ onAddJob, onJobUpdate, editableJob, onFormClear }) {
 
     onJobUpdate(job);
 
-    const clearForm = { Id: '', Company: '', Role: '', Status: 'Default', Notes: '', dateApplied: '' }
-    onFormClear(clearForm);
+    clearForm();
   }
 
   function handleCancel() {
 
-    const clearForm = { Id: '', Company: '', Role: '', Status: 'Default', Notes: '', dateApplied: '' }
-    onFormClear(clearForm);
+    clearForm();
   }
 
   function Buttons() {
@@ -64,8 +61,8 @@ function JobForm({ onAddJob, onJobUpdate, editableJob, onFormClear }) {
     if (editableJob.Id != '') {
       return (
         <div className=" flex flex-row w-full space-x-2 text-white rounded-lg justify-center place-items-center text-center">
-          <button className="bg-[#2563EB] p-3 rounded-lg shadow-sm" onClick={handleUpdate}>Update</button>
-          <button className="bg-red-600 p-3 rounded-lg shadow-sm" onClick={handleCancel}>Cancel</button>
+          <button className="bg-[#2563EB] p-3 rounded-lg w-full h-16 shadow-sm" onClick={handleUpdate}>Update</button>
+          <button className="bg-red-600 p-3 rounded-lg w-full h-16 shadow-sm" onClick={handleCancel}>Cancel</button>
         </div>
       );
     }
@@ -92,7 +89,7 @@ function JobForm({ onAddJob, onJobUpdate, editableJob, onFormClear }) {
   }
 
   return (
-    <div className="space-y-5 grow">
+    <div className="space-y-5 grow [&_label]:font-normal">
       <div className="flex flex-col">
         <label className="" htmlFor="company">Company Name</label>
         <input
@@ -141,10 +138,11 @@ function JobForm({ onAddJob, onJobUpdate, editableJob, onFormClear }) {
       </div>
       <div className="flex flex-col">
         <label className="" htmlFor="notes">Notes</label>
-        <input
-          className="border border-[#E5E7EB] py-2 px-4 rounded-lg mt-1 shadow-xs"
+        <textarea
+          className="border border-[#E5E7EB] py-2 px-4 rounded-lg mt-1 shadow-xs max-h-min"
           placeholder="Add any notes about this application"
           value={notes}
+          rows={5}
           id="notes"
           onChange={(e) => setNotes(e.target.value)} />
       </div>
