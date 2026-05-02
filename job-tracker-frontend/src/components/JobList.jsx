@@ -24,8 +24,6 @@ function JobList({ jobs, onDelete, editJob, currentPage, setCurrentPage, clearFo
 
   function formatDate(date) {
     const newDate = new Date(date + "T00:00:00");
-    console.log("Date: " + date);
-    console.log("New Date: " + newDate);
     return newDate.toLocaleDateString('en-US', options);
   }
 
