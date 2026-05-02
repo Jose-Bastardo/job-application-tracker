@@ -12,7 +12,8 @@ import java.util.List;
 @RequestMapping("/api/application")
 @CrossOrigin(origins = {
         "http://localhost:5173",
-        "https://job-application-tracker.josebastardo.com/"
+        "https://job-application-tracker.josebastardo.com/",
+        "https://jobtracker.dev.josebastardo.com"
 })
 public class ApplicationController {
 
