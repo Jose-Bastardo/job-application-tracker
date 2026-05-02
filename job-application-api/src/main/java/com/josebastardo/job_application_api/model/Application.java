@@ -26,6 +26,21 @@ public class Application {
     @Getter
     private String company;
 
+    @Column
+    @Setter
+    @Getter
+    private String type;
+
+    @Column
+    @Setter
+    @Getter
+    private String location;
+
+    @Column
+    @Setter
+    @Getter
+    private String link;
+
     @Column(nullable = false)
     @Setter
     @Getter

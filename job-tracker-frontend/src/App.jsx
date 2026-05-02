@@ -16,7 +16,7 @@ function App() {
   const [jobs, setJobs] = useState([]);
   const [filter, setFilter] = useState("All");
   const [sort, setSort] = useState("date-desc");
-  const [editableJob, setEditableJob] = useState({ Id: '', Company: '', Role: '', Status: 'Default', Notes: '', dateApplied: '' });
+  const [editableJob, setEditableJob] = useState({ Id: '', Company: '', Role: '', Status: 'Default', Notes: '', dateApplied: '', Link: '', Type: 'Default', Location: '' });
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,7 +53,7 @@ function App() {
   }
 
   function clearForm() {
-    const form = { Id: '', Company: '', Role: '', Status: 'Default', Notes: '', dateApplied: '' }
+    const form = { Id: '', Company: '', Role: '', Status: 'Default', Notes: '', dateApplied: '', Link: '', Location: '', Type: 'Default' }
     setEditableJob(form);
     setSelectedRowId(null);
   }
@@ -128,23 +128,23 @@ function App() {
   }
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="w-full text-sm h-full flex flex-col">
       <Navbar />
-      <div className="h-full w-full flex flex-col lg:flex-row lg:flex-nowrap grow p-8 lg:space-x-10 space-y-8 lg:space-y-0 justify-content-center place-items-center">
-        <div className="flex-1 lg:h-full w-full p-8 bg-white border rounded-2xl border-[#E5E7EB] shadow-md">
-          <div className="flex flex-row space-x-2 w-full mb-6 place-items-center">
-            <img alt={"Add Application"} src={addApplication} className="h-12"/>
+      <div className="h-fit w-full flex flex-col 2xl:flex-row 2xl:flex-nowrap grow p-8 2xl:space-x-10 space-y-8 2xl:space-y-0 justify-content-center place-items-center">
+        <div className="xl:flex-1 h-full max-w-100 w-full py-8 px-6 bg-white border rounded-2xl border-[#E5E7EB] shadow-md">
+          <div className="flex flex-row space-x-4 w-full px-2 mb-6 place-items-center">
+            <img alt={"Add Application"} src={addApplication} className="h-8"/>
             <h2 className="text-xl font-semibold">Add/Edit Job Application</h2>
           </div>
             <JobForm onAddJob={addJob} onJobUpdate={updateJobById} editableJob={editableJob} clearForm={clearForm} />
         </div>
-        <div className="flex flex-col flex-3 lg:h-full w-full py-8 bg-white border rounded-2xl border-[#E5E7EB] shadow-md flex-nowrap">
-          <div className="w-full flex flex-row px-10 mb-6 place-items-center flex-wrap md:whitespace-nowrap">
-            <div className="flex-1 flex flex-row flex-wrap place-items-center justify-center space-x-2 text-xl font-semibold md:whitespace-nowrap">
-              <img alt="Applications" src={application} className="h-12"/>
+        <div className="flex flex-col xl:flex-3 lg:h-full w-full py-8 bg-white border rounded-2xl border-[#E5E7EB] shadow-md flex-nowrap">
+          <div className="w-full flex flex-row px-8 mb-6 place-items-center flex-wrap md:whitespace-nowrap">
+            <div className="flex-1 flex flex-row flex-wrap place-items-center justify-left space-x-4 text-xl font-semibold md:whitespace-nowrap">
+              <img alt="Applications" src={application} className="h-8"/>
               <h2>Applications</h2>
             </div>
-            <div className="flex-1 lg:flex-3 lg:space-x-10 space-y-4 lg:space-y-0 place-items-center justify-center flex flex-row flex-wrap">
+            <div className="flex-1 lg:flex-3 lg:space-x-10 space-y-4 lg:space-y-0 place-items-center lg:place-items-end justify-center flex flex-col lg:flex-row">
               <FilterBar onFilterChange={onFilterChange} filter={filter} />
               <SortBar onSortChange={onSortChange} sort={sort} />
               <SearchBar onSearchChange={onSearchChange} search={search} />

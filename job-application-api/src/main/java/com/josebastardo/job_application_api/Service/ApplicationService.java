@@ -25,6 +25,9 @@ public class ApplicationService {
         Application application = new Application();
         application.setCompany(request.getCompany());
         application.setRole(request.getRole());
+        application.setLink(request.getLink());
+        application.setLocation(request.getLocation());
+        application.setType(request.getType());
         application.setStatus(request.getStatus());
         application.setNotes(request.getNotes());
         application.setDateApplied(request.getDateApplied());
@@ -50,6 +53,9 @@ public class ApplicationService {
                 .orElseThrow(() -> new RuntimeException("Application not found"));
         application.setCompany(request.getCompany());
         application.setRole(request.getRole());
+        application.setLocation(request.getLocation());
+        application.setLink(request.getLink());
+        application.setType(request.getType());
         application.setStatus(request.getStatus());
         application.setNotes(request.getNotes());
         application.setDateApplied(request.getDateApplied());
@@ -66,6 +72,9 @@ public class ApplicationService {
         response.setId(application.getId());
         response.setCompany(application.getCompany());
         response.setRole(application.getRole());
+        response.setLocation(application.getLocation());
+        response.setLink(application.getLink());
+        response.setType(application.getType());
         response.setStatus(application.getStatus());
         response.setNotes(application.getNotes());
         response.setDateApplied(application.getDateApplied());

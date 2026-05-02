@@ -23,6 +23,18 @@ public class ApplicationResponse {
 
     @Setter
     @Getter
+    private String Link;
+
+    @Setter
+    @Getter
+    private String Location;
+
+    @Setter
+    @Getter
+    private String Type;
+
+    @Setter
+    @Getter
     private String Status;
 
     @Setter

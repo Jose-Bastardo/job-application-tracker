@@ -14,6 +14,15 @@ public class ApplicationRequest {
     private String role;
 
     @Getter
+    private String location;
+
+    @Getter
+    private String link;
+
+    @Getter
+    private String type;
+
+    @Getter
     private String status;
 
     @Getter
